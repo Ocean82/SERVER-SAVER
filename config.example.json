@@ -1,0 +1,19 @@
+{
+  "aws": {
+    "region": "us-east-1",
+    "profile": null
+  },
+  "monitoring": {
+    "check_interval_minutes": 15,
+    "cpu_threshold": 80.0,
+    "memory_threshold": 90.0,
+    "disk_threshold": 85.0,
+    "enable_ssm_checks": true,
+    "enable_cloudwatch_checks": true
+  },
+  "alerts": {
+    "email": null,
+    "webhook_url": null
+  }
+}
+

@@ -1,3 +1,7 @@
 boto3>=1.28.0
 botocore>=1.31.0
 
+# Development dependencies (optional)
+# Install with: pip install -r requirements.txt
+# Or install dev dependencies: pip install -r requirements-dev.txt
+

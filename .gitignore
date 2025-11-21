@@ -53,3 +53,24 @@ Thumbs.db
 # Config (user-specific)
 config.json
 
+# SSH connection scripts (may contain key paths or sensitive server info)
+connect_and_fix.ps1
+connect_and_fix.sh
+rotate_ssh_key.ps1
+rotate_ssh_key.sh
+
+# Personal configuration files (keep your actual configs private)
+config.json
+run_tests.ps1
+test_with_credentials.ps1
+check_server_status.py
+check_ssh_access_logs.py
+check_server_file.py
+check_server_file_via_monitor.py
+upload_file_v2.py
+upload_fixed_file.py
+test_connection.py
+test_powershell.ps1
+quick_test.ps1
+fix_config_issue.ps1
+

@@ -219,13 +219,33 @@ The tool logs all activities to `server_monitor.log` and stdout. Check the log f
 
 This allows integration with monitoring systems and alerting tools.
 
+## Examples
+
+See the `examples/` directory for:
+- Configuration file templates (`config.example.json`)
+- Example scripts you can copy and customize
+- Setup guides and best practices
+
+**Important:** Copy example files to the root directory and update with your values. Your actual config files are protected by `.gitignore`.
+
 ## Contributing
+
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 Feel free to extend this tool with additional checks:
 - Application-specific health checks
 - Database connectivity tests
 - Custom CloudWatch alarms
 - Integration with notification services (SNS, Slack, etc.)
+
+### Quick Setup for Contributors
+
+1. Clone the repository
+2. Copy `examples/config.example.json` to `config.json`
+3. Update `config.json` with your test instance details
+4. Install dependencies: `pip install -r requirements.txt`
+5. Set up AWS credentials (see `AWS_CREDENTIALS_SETUP.md`)
+6. Start contributing!
 
 ## License
 

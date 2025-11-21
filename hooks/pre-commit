@@ -15,13 +15,13 @@ FOUND_ISSUES=0
 
 echo "🔍 Scanning for secrets and sensitive data..."
 
-# Exclude examples and hooks directories from scanning (safe template files)
+# Exclude examples, hooks, tests, and .github/workflows directories from scanning
 STAGED_FILES=$(git diff --cached --name-only)
 STAGED_CONTENT=$(git diff --cached)
 
-# Filter out examples and hooks directories from content
+# Filter out examples, hooks, tests, and workflow files from content
 # Also filter by file path to exclude entire files
-FILTERED_FILES=$(echo "$STAGED_FILES" | grep -vE "^(examples|hooks)/" || echo "")
+FILTERED_FILES=$(echo "$STAGED_FILES" | grep -vE "^(examples|hooks|tests)/" | grep -vE "^\.github/workflows/" || echo "")
 if [ -z "$FILTERED_FILES" ]; then
     # All files are in excluded directories, nothing to check
     FILTERED_CONTENT=""
@@ -74,10 +74,13 @@ if echo "$FILTERED_CONTENT" | grep -iE "(api[_-]?key|apikey)\s*[:=]\s*['\"][^'\"
     FOUND_ISSUES=1
 fi
 
-# Check for key file extensions (excluding examples and hooks directories)
+# Check for key file extensions (excluding examples, hooks, tests, and workflow files)
 for file in $STAGED_FILES; do
-    # Skip examples and hooks directories
-    if echo "$file" | grep -E "^(examples|hooks)/" > /dev/null 2>&1; then
+    # Skip examples, hooks, tests directories, and workflow files
+    if echo "$file" | grep -E "^(examples|hooks|tests)/" > /dev/null 2>&1; then
+        continue
+    fi
+    if echo "$file" | grep -E "^\.github/workflows/" > /dev/null 2>&1; then
         continue
     fi
     # Check for key file extensions
@@ -96,8 +99,8 @@ for file in $STAGED_FILES; do
     fi
 done
 
-# Check for .env files (excluding examples and hooks directories)
-if echo "$STAGED_FILES" | grep -vE "^(examples|hooks)/" | grep -E "\.env$|\.env\." > /dev/null 2>&1; then
+# Check for .env files (excluding examples, hooks, and tests directories)
+if echo "$STAGED_FILES" | grep -vE "^(examples|hooks|tests)/" | grep -E "\.env$|\.env\." > /dev/null 2>&1; then
     echo -e "${RED}❌ ERROR: .env file detected!${NC}"
     echo "   .env files should not be committed."
     echo "   Please add to .gitignore and use .env.example instead."

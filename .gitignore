@@ -53,6 +53,16 @@ Thumbs.db
 # Config (user-specific)
 config.json
 
+# Test coverage
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.tox/
+coverage.xml
+*.cover
+.hypothesis/
+
 # SSH connection scripts (may contain key paths or sensitive server info)
 connect_and_fix.ps1
 connect_and_fix.sh
